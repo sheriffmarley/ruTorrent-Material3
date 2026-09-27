@@ -52,7 +52,7 @@ The screenshots use sample data. Torrent names, labels, speeds and directory nam
 
    ```sh
    cd /path/to/rutorrent/plugins/theme/themes
-   git clone https://github.com/sheriffmarley/rutorrent-material3.git Material3
+   git clone https://github.com/sheriffmarley/ruTorrent-Material3.git Material3
    ```
 
 2. Pick the theme in ruTorrent under **Settings → General → Theme → Material3** and confirm with OK. ruTorrent reloads with the new theme.
@@ -126,6 +126,10 @@ git archive --format=zip --prefix=Material3/ -o Material3-v1.0.0.zip v1.0.0
 
 - Dialogs are limited to 95% of the window height by ruTorrent itself. In a very low window, for example with docked developer tools, the content area of a dialog shrinks and scrolls.
 - Plugins that are not listed under Features use their own images and colors, which may not match the theme.
+
+## Development
+
+This theme was built with the help of an AI coding assistant. Design decisions, review and testing on a live ruTorrent installation were done by the maintainer.
 
 ## License
 
