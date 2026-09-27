@@ -52,7 +52,7 @@ The screenshots use sample data. Torrent names, labels, speeds and directory nam
 
    ```sh
    cd /path/to/rutorrent/plugins/theme/themes
-   git clone <repository-url> Material3
+   git clone https://github.com/sheriffmarley/rutorrent-material3.git Material3
    ```
 
 2. Pick the theme in ruTorrent under **Settings → General → Theme → Material3** and confirm with OK. ruTorrent reloads with the new theme.
