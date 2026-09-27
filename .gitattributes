@@ -1,0 +1,6 @@
+# Keep repository-only files out of release archives (git archive and the
+# "Source code" downloads GitHub attaches to every release).
+screenshots/    export-ignore
+.gitattributes  export-ignore
+.gitignore      export-ignore
+.github/        export-ignore

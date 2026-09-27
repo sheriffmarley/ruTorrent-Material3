@@ -1,0 +1,32 @@
+# Builds the theme archive and publishes a GitHub release for every pushed
+# version tag, e.g.:  git tag v1.0.0 && git push origin v1.0.0
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      # The archive unpacks to a "Material3" folder, which is the theme name
+      # ruTorrent shows. Files marked export-ignore in .gitattributes
+      # (screenshots, repository files) are left out.
+      - name: Build theme archive
+        run: git archive --format=zip --prefix=Material3/ -o "Material3-${GITHUB_REF_NAME}.zip" HEAD
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >
+          gh release create "${GITHUB_REF_NAME}" "Material3-${GITHUB_REF_NAME}.zip"
+          --title "Material3 ${GITHUB_REF_NAME}"
+          --generate-notes
+          --verify-tag

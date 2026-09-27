@@ -1,0 +1,132 @@
+/*
+ *  Material 3 theme for ruTorrent 5.x - tables
+ *  Copyright (C) 2026 Material3 theme contributors
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version. See the LICENSE file for details.
+ *
+ *  SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+.stable {
+  --header-bg-color: var(--md-surface-container-low);
+  --header-bg-image: none;
+  --header-border-color: var(--md-outline-variant);
+  --header-asc-icon: var(--md-img-sort);
+  --col-resize-sep-bg-color: var(--md-primary);
+  --row-border-color: color-mix(in srgb, var(--md-outline-variant) 60%, transparent);
+  --row-odd-bg-color: var(--md-surface-container-low);
+  --row-even-bg-color: var(--md-surface-container-lowest);
+  --row-active-bg-color: var(--md-secondary-container);
+  --row-highlight-brightness: 1;
+  background-color: var(--md-surface-container-lowest);
+  color: var(--md-on-surface);
+}
+.stable-body { background: var(--md-surface-container-lowest); }
+.stable td { line-height: 20px; }
+
+/* Header: no vertical double lines, a single divider on the right */
+.stable thead td div {
+  padding: 6px 10px;
+  color: var(--md-on-surface-variant);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .01em;
+}
+.stable thead td:not(:first-child) div { border-left: 0; }
+.stable thead td:not(:last-child) div { border-right: 1px solid color-mix(in srgb, var(--md-outline-variant) 70%, transparent); }
+.stable thead td.asc div, .stable thead td.desc div { color: var(--md-primary); padding-right: 1.75rem; }
+.stable thead td.asc div::after, .stable thead td.desc div::after { background-size: 14px 14px; }
+.stable thead td div:hover { background-color: var(--md-state-hover); }
+.stable thead div.resz { border: 0; background: transparent; }
+
+/* Rows */
+.stable tbody td div {
+  padding: 3px 8px;
+  margin: 1px 0;
+}
+.stable tbody tr:hover td,
+.stable.alternate tbody tr:hover td { background-image: var(--md-layer-hover); }
+.stable tbody tr.selected td { color: var(--md-on-secondary-container); }
+/* Keep progress bars visible on the tinted background of a selected row */
+.stable tbody tr.selected .meter-value {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--md-on-secondary-container) 45%, transparent);
+}
+:root[data-md-scheme="dark"] .stable tbody tr.selected .meter-value {
+  filter: brightness(1.5) saturate(1.2);
+}
+/* filter creates a stacking context; keep the percentage above the bar */
+.stable .meter-text { z-index: 1; }
+
+/* Progress: rounded container-colored pill, color set from init.js */
+.stable .meter-value {
+  height: 18px;
+  margin: 4px 0;
+  border: 0;
+  border-radius: var(--md-shape-full);
+}
+.stable .meter-text {
+  top: 4px;
+  line-height: 18px;
+  color: var(--md-on-surface);
+  font-size: 12px;
+}
+.meter-value-start-color { background-color: #D1E4FF; }
+.meter-value-end-color { background-color: #B7F397; }
+
+/* Status icons (the sprite is replaced by masks colored per state) */
+.stable .stable-icon[class*="Status_"],
+.stable .stable-icon.Icon_File,
+.stable .stable-icon.Icon_Dir,
+.stable .stable-icon.Icon_Share {
+  width: 18px;
+  height: 18px;
+  margin: 0 2px;
+  background: var(--md-on-surface-variant);
+  -webkit-mask: var(--md-icon) center / 18px 18px no-repeat;
+  mask: var(--md-icon) center / 18px 18px no-repeat;
+}
+.stable .stable-icon.Status_Down { --md-icon: var(--i-download); background-color: var(--md-primary); }
+.stable .stable-icon.Status_Up { --md-icon: var(--i-upload); background-color: var(--md-success); }
+.stable .stable-icon.Status_Incompleted { --md-icon: var(--i-stop-circle); background-color: var(--md-outline); }
+.stable .stable-icon.Status_Paused { --md-icon: var(--i-pause-circle); background-color: var(--md-warning); }
+.stable .stable-icon.Status_Error_Down,
+.stable .stable-icon.Status_Error_Up,
+.stable .stable-icon.Status_Error { --md-icon: var(--i-error); background-color: var(--md-error); }
+.stable .stable-icon.Status_Completed { --md-icon: var(--i-check-circle); background-color: var(--md-success); }
+.stable .stable-icon.Status_Queued_Down,
+.stable .stable-icon.Status_Queued_Up { --md-icon: var(--i-schedule); background-color: var(--md-secondary); }
+.stable .stable-icon.Status_Up_Down { --md-icon: var(--i-swap-vert); background-color: var(--md-primary); }
+.stable .stable-icon.Status_Checking { --md-icon: var(--i-autorenew); background-color: var(--md-tertiary); }
+.stable .stable-icon.Status_RSS { --md-icon: var(--i-rss); background-color: var(--md-warning); }
+.stable .stable-icon.Icon_File { --md-icon: var(--i-file); background-color: var(--md-on-surface-variant); }
+.stable .stable-icon.Icon_Dir { --md-icon: var(--i-folder); background-color: var(--md-primary); }
+.stable .stable-icon.Icon_Share { --md-icon: var(--i-folder-shared); background-color: var(--md-primary); }
+
+/* Column drag & resize helpers */
+.stable-move-header,
+.webkit .stable-move-header,
+.opera .stable-move-header {
+  background: var(--md-surface-container-high);
+  color: var(--md-on-surface);
+  border: 1px solid var(--md-primary);
+  border-radius: var(--md-shape-xs);
+  box-shadow: var(--md-elev-2);
+  padding: 4px 12px 4px 8px;
+  line-height: 16px;
+}
+.stable-separator-header { background: var(--md-primary); border-radius: 1px; }
+.stable-active-header { border-color: var(--md-primary) !important; }
+.stable-scrollpos {
+  background: var(--md-surface-container-lowest);
+  color: var(--md-on-surface-variant);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* Compact mode keeps working: rows lose their vertical padding */
+body.compact .stable .meter-value { height: 14px; margin: 2px 0; }
+body.compact .stable .meter-text { top: 2px; line-height: 14px; }
+body.compact panel-label { height: 28px; }
